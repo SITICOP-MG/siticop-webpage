@@ -189,6 +189,24 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .aviso__horario .i { margin-top: 0.2em; }
 
+.aviso__email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.875rem;
+  margin-top: 1.25rem;
+  color: var(--claro-sobre-azul);
+}
+.aviso__email strong { color: #fff; }
+.aviso__email a { color: #fff; font-weight: 700; }
+.aviso__email .copiar__botao {
+  margin-left: 0;
+  border-color: rgb(255 255 255 / 0.6);
+  background: transparent;
+  color: #fff;
+}
+.aviso__email .copiar__botao:hover { border-color: #fff; background: rgb(255 255 255 / 0.08); }
+
 .aviso :focus-visible { outline-color: var(--verde); }
 
 /* Botões */
@@ -365,9 +383,58 @@ a:hover { text-decoration-thickness: 2px; }
 
 .pedido__acoes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
   gap: 0.75rem;
   margin-top: 1.5rem;
+}
+.pedido__acoes .botao--whats { grid-column: 1 / -1; }
+
+/* E-mail por aparelho: no toque, o mailto abre o app já preenchido;
+   com mouse quase ninguém tem app de e-mail padrão, então oferecemos Gmail/Outlook na web. */
+@media (pointer: coarse) {
+  .so-mouse { display: none !important; }
+}
+@media not all and (pointer: coarse) {
+  .so-toque { display: none !important; }
+}
+
+.copiar {
+  margin-top: 1rem;
+  color: var(--tinta-suave);
+}
+
+.copiar__email {
+  color: var(--azul);
+  font-weight: 800;
+  user-select: all;
+  overflow-wrap: anywhere;
+}
+
+.copiar__botao {
+  margin-left: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  min-height: 2.25rem;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  background: var(--papel);
+  color: var(--azul);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease-out, border-color 160ms ease-out;
+}
+.copiar__botao:hover { background: var(--papel-alt); border-color: var(--azul); }
+
+.copiar__botao { min-width: 6.5rem; }
+
+/* Aviso só para leitores de tela; o retorno visual é o próprio botão. */
+.copiar__aviso {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* Homologação */
